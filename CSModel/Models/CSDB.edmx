@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_news' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_news">
+          <Key>
+            <PropertyRef Name="news_id" />
+            <PropertyRef Name="news_kind" />
+            <PropertyRef Name="depart_code" />
+            <PropertyRef Name="title" />
+            <PropertyRef Name="content" />
+            <PropertyRef Name="enabled" />
+            <PropertyRef Name="begin_date" />
+            <PropertyRef Name="top_news" />
+            <PropertyRef Name="meta1" />
+            <PropertyRef Name="meta2" />
+            <PropertyRef Name="meta3" />
+            <PropertyRef Name="news_count" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+            <PropertyRef Name="maintainer" />
+            <PropertyRef Name="maintainer_tel" />
+            <PropertyRef Name="new_icon" />
+            <PropertyRef Name="tag_text" />
+            <PropertyRef Name="keyword" />
+          </Key>
+          <Property Name="news_id" Type="int" Nullable="false" />
+          <Property Name="news_kind" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="depart_code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="content" Type="ntext" Nullable="false" />
+          <Property Name="enabled" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="begin_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="top_news" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="meta1" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="meta2" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="meta3" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="news_count" Type="int" Nullable="false" />
+          <Property Name="update_user_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+          <Property Name="maintainer" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maintainer_tel" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="new_begin_date" Type="datetime" />
+          <Property Name="new_end_date" Type="datetime" />
+          <Property Name="new_icon" Type="int" Nullable="false" />
+          <Property Name="tag_text" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="keyword" Type="nvarchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_survey">
+          <Key>
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="surver_name" />
+            <PropertyRef Name="enabled" />
+            <PropertyRef Name="begin_date" />
+            <PropertyRef Name="end_date" />
+            <PropertyRef Name="memo" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="surver_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="enabled" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="begin_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+          <Property Name="memo" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="update_user_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey_answer' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_survey_answer">
+          <Key>
+            <PropertyRef Name="sa_id" />
+            <PropertyRef Name="st_id" />
+            <PropertyRef Name="answer_name" />
+            <PropertyRef Name="grade" />
+            <PropertyRef Name="has_essay_question" />
+            <PropertyRef Name="serial_no" />
+            <PropertyRef Name="memo" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="sa_id" Type="int" Nullable="false" />
+          <Property Name="st_id" Type="int" Nullable="false" />
+          <Property Name="answer_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="grade" Type="smallint" Nullable="false" />
+          <Property Name="has_essay_question" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="essay_type" Type="varchar" MaxLength="1" />
+          <Property Name="essay_length" Type="smallint" />
+          <Property Name="skip_topic" Type="int" />
+          <Property Name="serial_no" Type="smallint" Nullable="false" />
+          <Property Name="memo" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="update_user_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey_answer_record' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_survey_answer_record">
+          <Key>
+            <PropertyRef Name="r_id" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="st_id" />
+            <PropertyRef Name="sa_id" />
+          </Key>
+          <Property Name="r_id" Type="int" Nullable="false" />
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="st_id" Type="int" Nullable="false" />
+          <Property Name="sa_id" Type="int" Nullable="false" />
+          <Property Name="essay_content" Type="nvarchar(max)" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey_record' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_survey_record">
+          <Key>
+            <PropertyRef Name="r_id" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="fill_date" />
+            <PropertyRef Name="staff_id" />
+            <PropertyRef Name="fill_ip" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="r_id" Type="int" Nullable="false" />
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="fill_date" Type="datetime" Nullable="false" />
+          <Property Name="staff_id" Type="int" Nullable="false" />
+          <Property Name="fill_ip" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey_topic' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_survey_topic">
+          <Key>
+            <PropertyRef Name="st_id" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="topic_name" />
+            <PropertyRef Name="answer_type" />
+            <PropertyRef Name="required" />
+            <PropertyRef Name="is_subtitle" />
+            <PropertyRef Name="serial_no" />
+            <PropertyRef Name="row_cols" />
+            <PropertyRef Name="memo" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="st_id" Type="int" Nullable="false" />
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="topic_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="answer_type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="required" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="is_subtitle" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="serial_no" Type="smallint" Nullable="false" />
+          <Property Name="row_cols" Type="smallint" Nullable="false" />
+          <Property Name="memo" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="update_user_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey_user' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="cs_survey_user">
+          <Key>
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="staff_id" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="verification_code" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="staff_id" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="verification_code" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="send_date" Type="datetime" />
+          <Property Name="update_user_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CSDBModelStoreContainer">
+          <EntitySet Name="cs_news" EntityType="Self.cs_news" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_news].[news_id] AS [news_id], 
+    [cs_news].[news_kind] AS [news_kind], 
+    [cs_news].[depart_code] AS [depart_code], 
+    [cs_news].[title] AS [title], 
+    [cs_news].[content] AS [content], 
+    [cs_news].[enabled] AS [enabled], 
+    [cs_news].[begin_date] AS [begin_date], 
+    [cs_news].[end_date] AS [end_date], 
+    [cs_news].[top_news] AS [top_news], 
+    [cs_news].[meta1] AS [meta1], 
+    [cs_news].[meta2] AS [meta2], 
+    [cs_news].[meta3] AS [meta3], 
+    [cs_news].[news_count] AS [news_count], 
+    [cs_news].[update_user_id] AS [update_user_id], 
+    [cs_news].[update_date] AS [update_date], 
+    [cs_news].[maintainer] AS [maintainer], 
+    [cs_news].[maintainer_tel] AS [maintainer_tel], 
+    [cs_news].[new_begin_date] AS [new_begin_date], 
+    [cs_news].[new_end_date] AS [new_end_date], 
+    [cs_news].[new_icon] AS [new_icon], 
+    [cs_news].[tag_text] AS [tag_text], 
+    [cs_news].[keyword] AS [keyword]
+    FROM [dbo].[cs_news] AS [cs_news]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cs_survey" EntityType="Self.cs_survey" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_survey].[s_id] AS [s_id], 
+    [cs_survey].[surver_name] AS [surver_name], 
+    [cs_survey].[enabled] AS [enabled], 
+    [cs_survey].[begin_date] AS [begin_date], 
+    [cs_survey].[end_date] AS [end_date], 
+    [cs_survey].[memo] AS [memo], 
+    [cs_survey].[update_user_id] AS [update_user_id], 
+    [cs_survey].[update_date] AS [update_date]
+    FROM [dbo].[cs_survey] AS [cs_survey]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cs_survey_answer" EntityType="Self.cs_survey_answer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_survey_answer].[sa_id] AS [sa_id], 
+    [cs_survey_answer].[st_id] AS [st_id], 
+    [cs_survey_answer].[answer_name] AS [answer_name], 
+    [cs_survey_answer].[grade] AS [grade], 
+    [cs_survey_answer].[has_essay_question] AS [has_essay_question], 
+    [cs_survey_answer].[essay_type] AS [essay_type], 
+    [cs_survey_answer].[essay_length] AS [essay_length], 
+    [cs_survey_answer].[skip_topic] AS [skip_topic], 
+    [cs_survey_answer].[serial_no] AS [serial_no], 
+    [cs_survey_answer].[memo] AS [memo], 
+    [cs_survey_answer].[update_user_id] AS [update_user_id], 
+    [cs_survey_answer].[update_date] AS [update_date]
+    FROM [dbo].[cs_survey_answer] AS [cs_survey_answer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cs_survey_answer_record" EntityType="Self.cs_survey_answer_record" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_survey_answer_record].[r_id] AS [r_id], 
+    [cs_survey_answer_record].[s_id] AS [s_id], 
+    [cs_survey_answer_record].[st_id] AS [st_id], 
+    [cs_survey_answer_record].[sa_id] AS [sa_id], 
+    [cs_survey_answer_record].[essay_content] AS [essay_content]
+    FROM [dbo].[cs_survey_answer_record] AS [cs_survey_answer_record]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cs_survey_record" EntityType="Self.cs_survey_record" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_survey_record].[r_id] AS [r_id], 
+    [cs_survey_record].[s_id] AS [s_id], 
+    [cs_survey_record].[fill_date] AS [fill_date], 
+    [cs_survey_record].[staff_id] AS [staff_id], 
+    [cs_survey_record].[fill_ip] AS [fill_ip], 
+    [cs_survey_record].[update_date] AS [update_date]
+    FROM [dbo].[cs_survey_record] AS [cs_survey_record]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cs_survey_topic" EntityType="Self.cs_survey_topic" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_survey_topic].[st_id] AS [st_id], 
+    [cs_survey_topic].[s_id] AS [s_id], 
+    [cs_survey_topic].[topic_name] AS [topic_name], 
+    [cs_survey_topic].[answer_type] AS [answer_type], 
+    [cs_survey_topic].[required] AS [required], 
+    [cs_survey_topic].[is_subtitle] AS [is_subtitle], 
+    [cs_survey_topic].[serial_no] AS [serial_no], 
+    [cs_survey_topic].[row_cols] AS [row_cols], 
+    [cs_survey_topic].[memo] AS [memo], 
+    [cs_survey_topic].[update_user_id] AS [update_user_id], 
+    [cs_survey_topic].[update_date] AS [update_date]
+    FROM [dbo].[cs_survey_topic] AS [cs_survey_topic]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="cs_survey_user" EntityType="Self.cs_survey_user" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cs_survey_user].[s_id] AS [s_id], 
+    [cs_survey_user].[staff_id] AS [staff_id], 
+    [cs_survey_user].[email] AS [email], 
+    [cs_survey_user].[verification_code] AS [verification_code], 
+    [cs_survey_user].[send_date] AS [send_date], 
+    [cs_survey_user].[update_user_id] AS [update_user_id], 
+    [cs_survey_user].[update_date] AS [update_date]
+    FROM [dbo].[cs_survey_user] AS [cs_survey_user]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cs_news">
+          <Key>
+            <PropertyRef Name="news_id" />
+            <PropertyRef Name="news_kind" />
+            <PropertyRef Name="depart_code" />
+            <PropertyRef Name="title" />
+            <PropertyRef Name="content" />
+            <PropertyRef Name="enabled" />
+            <PropertyRef Name="begin_date" />
+            <PropertyRef Name="top_news" />
+            <PropertyRef Name="meta1" />
+            <PropertyRef Name="meta2" />
+            <PropertyRef Name="meta3" />
+            <PropertyRef Name="news_count" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+            <PropertyRef Name="maintainer" />
+            <PropertyRef Name="maintainer_tel" />
+            <PropertyRef Name="new_icon" />
+            <PropertyRef Name="tag_text" />
+            <PropertyRef Name="keyword" />
+          </Key>
+          <Property Name="news_id" Type="Int32" Nullable="false" />
+          <Property Name="news_kind" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="depart_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="enabled" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="begin_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="top_news" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="meta1" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="meta2" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="meta3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="news_count" Type="Int32" Nullable="false" />
+          <Property Name="update_user_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="maintainer" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="maintainer_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="new_begin_date" Type="DateTime" Precision="3" />
+          <Property Name="new_end_date" Type="DateTime" Precision="3" />
+          <Property Name="new_icon" Type="Int32" Nullable="false" />
+          <Property Name="tag_text" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="keyword" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cs_survey">
+          <Key>
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="surver_name" />
+            <PropertyRef Name="enabled" />
+            <PropertyRef Name="begin_date" />
+            <PropertyRef Name="end_date" />
+            <PropertyRef Name="memo" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="surver_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="enabled" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="begin_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="memo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="update_user_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="cs_survey_answer">
+          <Key>
+            <PropertyRef Name="sa_id" />
+            <PropertyRef Name="st_id" />
+            <PropertyRef Name="answer_name" />
+            <PropertyRef Name="grade" />
+            <PropertyRef Name="has_essay_question" />
+            <PropertyRef Name="serial_no" />
+            <PropertyRef Name="memo" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="sa_id" Type="Int32" Nullable="false" />
+          <Property Name="st_id" Type="Int32" Nullable="false" />
+          <Property Name="answer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="grade" Type="Int16" Nullable="false" />
+          <Property Name="has_essay_question" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="essay_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="essay_length" Type="Int16" />
+          <Property Name="skip_topic" Type="Int32" />
+          <Property Name="serial_no" Type="Int16" Nullable="false" />
+          <Property Name="memo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="update_user_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="cs_survey_answer_record">
+          <Key>
+            <PropertyRef Name="r_id" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="st_id" />
+            <PropertyRef Name="sa_id" />
+          </Key>
+          <Property Name="r_id" Type="Int32" Nullable="false" />
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="st_id" Type="Int32" Nullable="false" />
+          <Property Name="sa_id" Type="Int32" Nullable="false" />
+          <Property Name="essay_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="cs_survey_record">
+          <Key>
+            <PropertyRef Name="r_id" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="fill_date" />
+            <PropertyRef Name="staff_id" />
+            <PropertyRef Name="fill_ip" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="r_id" Type="Int32" Nullable="false" />
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="fill_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="staff_id" Type="Int32" Nullable="false" />
+          <Property Name="fill_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="cs_survey_topic">
+          <Key>
+            <PropertyRef Name="st_id" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="topic_name" />
+            <PropertyRef Name="answer_type" />
+            <PropertyRef Name="required" />
+            <PropertyRef Name="is_subtitle" />
+            <PropertyRef Name="serial_no" />
+            <PropertyRef Name="row_cols" />
+            <PropertyRef Name="memo" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="st_id" Type="Int32" Nullable="false" />
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="topic_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="answer_type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="required" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="is_subtitle" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="serial_no" Type="Int16" Nullable="false" />
+          <Property Name="row_cols" Type="Int16" Nullable="false" />
+          <Property Name="memo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="update_user_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="cs_survey_user">
+          <Key>
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="staff_id" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="verification_code" />
+            <PropertyRef Name="update_user_id" />
+            <PropertyRef Name="update_date" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="staff_id" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="verification_code" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="send_date" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="CSDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cs_news" EntityType="Self.cs_news" />
+          <EntitySet Name="cs_survey" EntityType="Self.cs_survey" />
+          <EntitySet Name="cs_survey_answer" EntityType="Self.cs_survey_answer" />
+          <EntitySet Name="cs_survey_answer_record" EntityType="Self.cs_survey_answer_record" />
+          <EntitySet Name="cs_survey_record" EntityType="Self.cs_survey_record" />
+          <EntitySet Name="cs_survey_topic" EntityType="Self.cs_survey_topic" />
+          <EntitySet Name="cs_survey_user" EntityType="Self.cs_survey_user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSDBModelStoreContainer" CdmEntityContainer="CSDBEntities">
+          <EntitySetMapping Name="cs_news">
+            <EntityTypeMapping TypeName="CSDBModel.cs_news">
+              <MappingFragment StoreEntitySet="cs_news">
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
+                <ScalarProperty Name="news_kind" ColumnName="news_kind" />
+                <ScalarProperty Name="depart_code" ColumnName="depart_code" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="begin_date" ColumnName="begin_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="top_news" ColumnName="top_news" />
+                <ScalarProperty Name="meta1" ColumnName="meta1" />
+                <ScalarProperty Name="meta2" ColumnName="meta2" />
+                <ScalarProperty Name="meta3" ColumnName="meta3" />
+                <ScalarProperty Name="news_count" ColumnName="news_count" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="maintainer" ColumnName="maintainer" />
+                <ScalarProperty Name="maintainer_tel" ColumnName="maintainer_tel" />
+                <ScalarProperty Name="new_begin_date" ColumnName="new_begin_date" />
+                <ScalarProperty Name="new_end_date" ColumnName="new_end_date" />
+                <ScalarProperty Name="new_icon" ColumnName="new_icon" />
+                <ScalarProperty Name="tag_text" ColumnName="tag_text" />
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_survey">
+            <EntityTypeMapping TypeName="CSDBModel.cs_survey">
+              <MappingFragment StoreEntitySet="cs_survey">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="surver_name" ColumnName="surver_name" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="begin_date" ColumnName="begin_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_survey_answer">
+            <EntityTypeMapping TypeName="CSDBModel.cs_survey_answer">
+              <MappingFragment StoreEntitySet="cs_survey_answer">
+                <ScalarProperty Name="sa_id" ColumnName="sa_id" />
+                <ScalarProperty Name="st_id" ColumnName="st_id" />
+                <ScalarProperty Name="answer_name" ColumnName="answer_name" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="has_essay_question" ColumnName="has_essay_question" />
+                <ScalarProperty Name="essay_type" ColumnName="essay_type" />
+                <ScalarProperty Name="essay_length" ColumnName="essay_length" />
+                <ScalarProperty Name="skip_topic" ColumnName="skip_topic" />
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_survey_answer_record">
+            <EntityTypeMapping TypeName="CSDBModel.cs_survey_answer_record">
+              <MappingFragment StoreEntitySet="cs_survey_answer_record">
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="st_id" ColumnName="st_id" />
+                <ScalarProperty Name="sa_id" ColumnName="sa_id" />
+                <ScalarProperty Name="essay_content" ColumnName="essay_content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_survey_record">
+            <EntityTypeMapping TypeName="CSDBModel.cs_survey_record">
+              <MappingFragment StoreEntitySet="cs_survey_record">
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="fill_date" ColumnName="fill_date" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="fill_ip" ColumnName="fill_ip" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_survey_topic">
+            <EntityTypeMapping TypeName="CSDBModel.cs_survey_topic">
+              <MappingFragment StoreEntitySet="cs_survey_topic">
+                <ScalarProperty Name="st_id" ColumnName="st_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="topic_name" ColumnName="topic_name" />
+                <ScalarProperty Name="answer_type" ColumnName="answer_type" />
+                <ScalarProperty Name="required" ColumnName="required" />
+                <ScalarProperty Name="is_subtitle" ColumnName="is_subtitle" />
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="row_cols" ColumnName="row_cols" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_survey_user">
+            <EntityTypeMapping TypeName="CSDBModel.cs_survey_user">
+              <MappingFragment StoreEntitySet="cs_survey_user">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="verification_code" ColumnName="verification_code" />
+                <ScalarProperty Name="send_date" ColumnName="send_date" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

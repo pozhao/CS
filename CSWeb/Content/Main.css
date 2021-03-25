@@ -1,0 +1,42 @@
+﻿body span, body a {
+  margin: 0;
+  padding: 0;
+  white-space: normal; }
+
+body {
+  font-size: 1em; }
+  body div {
+    font-weight: bold;
+    /*margin-left: pow(2, 3) * 1px;
+		@include square(100px, $radius: 10px);*/ }
+  body span {
+    color: red; }
+  body .table {
+    table-layout: fixed; }
+    body .table th {
+      width: 5%;
+      white-space: nowrap;
+      vertical-align: middle !important; }
+    body .table td.ellipse {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    body .table a {
+      white-space: nowrap; }
+  body a.page {
+    background-color: transparent;
+    color: #337ab7;
+    margin-right: 5px;
+    padding: 3px 7px;
+    border-radius: 0px; }
+  body a.active {
+    background-color: darkgray !important;
+    color: white;
+    border-radius: 5px;
+    pointer-events: none; }
+
+.d-flex {
+  display: flex; }
+
+.font-weight-bold {
+  font-weight: bold; }

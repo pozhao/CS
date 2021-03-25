@@ -1,0 +1,83 @@
+﻿@model  CSWeb.ViewModels.NewsListViewModel
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>新聞</h2>
+
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "News", FormMethod.Get))
+{
+	<p>
+		<fieldset>
+			<legend>查詢條件</legend>
+			<table class="table">
+				<tr>
+					<th>標題：</th>
+					<td>
+						@Html.TextBox("SearchTitle", "", new { @class = "form-control" })
+					</td>
+					<th>內容：</th>
+					<td>
+						@Html.TextBox("SearchContent", "", new { @class = "form-control" })
+					</td>
+				</tr>
+				<tr>
+					<th>日期：</th>
+					<td>
+						@Html.TextBox("SearchDate", "", new { @class = "date-picker form-control", @size = 10 })
+					</td>
+					<th>類別：</th>
+					<td>
+						@Html.DropDownList("SearchKind", Model.select_list_kind, "請選擇類別", new { @class = "form-control" })
+					</td>
+					<td>
+						<input type="submit" value="查詢" class="btn btn-secondary" />
+					</td>
+				</tr>
+				<tr>
+				</tr>
+			</table>
+		</fieldset>
+	</p>
+}
+
+<table class="table table2">
+	<thead>
+		<tr>
+			<th style="width: 5%;" class="no-sort">序號</th>
+			<th style="width: 20%;">標題</th>
+			<th style="width: 40%;">內容</th>
+			<th style="width: 20%;">公布日期</th>
+			<th style="width: 10%;">新聞置頂/th>
+			<th style="width: 5%;" class="no-sort"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.news_list)
+		{
+			<tr>
+				<td></td>
+				<td>
+					@Html.DisplayFor(modelItem => item.title)
+				</td>
+				<td class="ellipse">
+					@Html.DisplayFor(modelItem => item.content)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.begin_end_date)
+				</td>
+				<th>
+					@Html.DisplayFor(model => item.top_news)
+				</th>
+				<td>
+					@Html.ActionLink("編輯", "Edit", new { NewsID = item.news_id })
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

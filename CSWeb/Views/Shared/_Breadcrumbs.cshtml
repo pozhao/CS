@@ -1,0 +1,19 @@
+﻿@{
+	int index = 0;
+	var lstBreadcrumbs = (List<CSModel.ViewModels.Shared.Breadcrumbs>) ViewBag.breadcrumbs_list;
+	if (lstBreadcrumbs == null)
+	{
+		lstBreadcrumbs = new List<CSModel.ViewModels.Shared.Breadcrumbs>();
+	}
+}
+
+@foreach (var item in lstBreadcrumbs)
+{
+	if (index > 0)
+	{
+		<span> > </span>
+	}
+	@Html.ActionLink(item.name, item.action, item.controller);
+
+	index += 1;
+}

@@ -1,0 +1,88 @@
+﻿$default-size: 1em;
+
+@function pow($base, $exponent) {
+	$result: 1;
+
+	@for $_ from 1 through $exponent {
+		$result: $result * $base;
+	}
+
+	@return $result;
+}
+
+@mixin square($size, $radius: 0) {
+	/*width: $size;
+	height: $size;
+	border: 1px solid blue;*/
+	@if $radius != 0 {
+		border-radius: $radius;
+	}
+}
+
+%shared-style {
+	margin: 0;
+	padding: 0;
+	white-space: normal;
+}
+
+body {
+	font-size: $default-size;
+
+	div {
+		font-weight: bold;
+		/*margin-left: pow(2, 3) * 1px;
+		@include square(100px, $radius: 10px);*/
+	}
+
+	span {
+		color: red;
+		@extend %shared-style;
+	}
+
+	a {
+		@extend %shared-style;
+	}
+
+	.table {
+		table-layout: fixed;
+
+		th {
+			width: 5%;
+			white-space: nowrap;
+			vertical-align: middle !important;
+		}
+
+		td.ellipse {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		a {
+			white-space: nowrap;
+		}
+	}
+
+	a.page {
+		background-color: transparent;
+		color: #337ab7;
+		margin-right: 5px;
+		padding: 3px 7px;
+		border-radius: 0px;
+	}
+
+	a.active {
+		background-color: darkgray !important;
+		color: white;
+		border-radius: 5px;
+		pointer-events: none;
+	}
+}
+
+.d-flex {
+	display: flex;
+}
+
+.font-weight-bold {
+	font-weight: bold;
+}
