@@ -1,192 +1,135 @@
 ﻿@model CSModel.Models.cs_news
+@using CSWeb.App_Code
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>編輯</h2>
 
 <div>
-    <h4>cs_news</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.news_id)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			新聞類別：
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.news_id)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.news_kind)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.news_kind)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.depart_code)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.news_kind)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.depart_code)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.depart_code)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.title)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.depart_code)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.title)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.content)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.content)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.content)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.enabled)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.content)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.enabled)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.enabled)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.begin_date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.enabled)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.begin_date)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.begin_date)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.end_date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.begin_date)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.end_date)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.end_date)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.top_news)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.end_date)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.top_news)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.top_news)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.news_count)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.top_news)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.news_count)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.meta1)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.update_user_id)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.meta1)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.update_user_id)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.meta2)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.update_date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.meta2)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.update_date)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.meta3)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.maintainer)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.meta3)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.maintainer)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.news_count)
-        </dt>
+		<dt>
+			維護人員電話：
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.news_count)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.maintainer_tel)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.update_user_id)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.new_begin_date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.update_user_id)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.new_begin_date)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.update_date)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.new_end_date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.update_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.maintainer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.maintainer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.maintainer_tel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.maintainer_tel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.new_begin_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.new_begin_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.new_end_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.new_end_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.new_icon)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.new_icon)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tag_text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tag_text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.keyword)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.keyword)
-        </dd>
-
-    </dl>
+		<dd>
+			@Html.DisplayFor(model => model.new_end_date)
+		</dd>
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

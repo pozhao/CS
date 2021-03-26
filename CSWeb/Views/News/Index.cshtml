@@ -7,7 +7,7 @@
 <h2>新聞</h2>
 
 <p>
-	@Html.ActionLink("Create New", "Create")
+	@Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
 </p>
 
 @using (Html.BeginForm("Index", "News", FormMethod.Get))
