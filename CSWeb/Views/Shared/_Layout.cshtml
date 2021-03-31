@@ -21,7 +21,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("首頁", "Index", "Home")</li>
-					<li>@Html.ActionLink("關於", "About", "Home")</li>
+					<li>@Html.ActionLink("問題", "Index", "Question")</li>
 					<li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
 				</ul>
 			</div>
@@ -29,7 +29,9 @@
 	</div>
 	<div class="container body-content">
 		<div class="breadcrumb">
-			@{Html.RenderPartial("_Breadcrumbs"); }
+			@{
+				Html.RenderPartial("_Breadcrumbs");
+			}
 		</div>
 		@RenderBody()
 		<hr />

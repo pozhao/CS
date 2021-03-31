@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'CSDB.dbo.cs_news' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="cs_news">
@@ -51,6 +51,40 @@
           <Property Name="new_icon" Type="int" Nullable="false" />
           <Property Name="tag_text" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="keyword" Type="nvarchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cs_question">
+          <Key>
+            <PropertyRef Name="q_code" />
+          </Key>
+          <Property Name="q_code" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="q_priority" Type="char" MaxLength="1" />
+          <Property Name="q_kind" Type="varchar" MaxLength="2" />
+          <Property Name="q_title" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="q_content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="q_status" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="q_processing_description" Type="nvarchar(max)" />
+          <Property Name="apply_department" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apply_user_id" Type="int" Nullable="false" />
+          <Property Name="apply_date" Type="datetime" Nullable="false" />
+          <Property Name="record_user_id" Type="int" Nullable="false" />
+          <Property Name="restrict_finish_date" Type="datetime" />
+          <Property Name="demand" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="schedule_date" Type="datetime" />
+          <Property Name="estimate_time" Type="smallint" />
+          <Property Name="finish_date" Type="datetime" />
+          <Property Name="memo" Type="ntext" />
+          <Property Name="update_user_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="datetime" Nullable="false" />
+          <Property Name="complexity" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="cs_question_file">
+          <Key>
+            <PropertyRef Name="file_id" />
+          </Key>
+          <Property Name="file_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="q_code" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="file_content" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'CSDB.dbo.cs_survey' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
@@ -182,6 +216,8 @@
           <Property Name="update_date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CSDBModelStoreContainer">
+          <EntitySet Name="cs_question" EntityType="Self.cs_question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cs_question_file" EntityType="Self.cs_question_file" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cs_news" EntityType="Self.cs_news" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [cs_news].[news_id] AS [news_id], 
@@ -282,8 +318,7 @@
     FROM [dbo].[cs_survey_user] AS [cs_survey_user]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -457,7 +492,43 @@
           <EntitySet Name="cs_survey_record" EntityType="Self.cs_survey_record" />
           <EntitySet Name="cs_survey_topic" EntityType="Self.cs_survey_topic" />
           <EntitySet Name="cs_survey_user" EntityType="Self.cs_survey_user" />
+          <EntitySet Name="cs_question" EntityType="CSDBModel.cs_question" />
+          <EntitySet Name="cs_question_file" EntityType="CSDBModel.cs_question_file" />
         </EntityContainer>
+        <EntityType Name="cs_question">
+          <Key>
+            <PropertyRef Name="q_code" />
+          </Key>
+          <Property Name="q_code" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="q_priority" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="q_kind" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="q_title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="q_content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="q_status" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="q_processing_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="apply_department" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apply_user_id" Type="Int32" Nullable="false" />
+          <Property Name="apply_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="record_user_id" Type="Int32" Nullable="false" />
+          <Property Name="restrict_finish_date" Type="DateTime" Precision="3" />
+          <Property Name="demand" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="schedule_date" Type="DateTime" Precision="3" />
+          <Property Name="estimate_time" Type="Int16" />
+          <Property Name="finish_date" Type="DateTime" Precision="3" />
+          <Property Name="memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="update_user_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="complexity" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cs_question_file">
+          <Key>
+            <PropertyRef Name="file_id" />
+          </Key>
+          <Property Name="file_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="q_code" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="file_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="file_content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -574,6 +645,42 @@
                 <ScalarProperty Name="send_date" ColumnName="send_date" />
                 <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
                 <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_question">
+            <EntityTypeMapping TypeName="CSDBModel.cs_question">
+              <MappingFragment StoreEntitySet="cs_question">
+                <ScalarProperty Name="complexity" ColumnName="complexity" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="finish_date" ColumnName="finish_date" />
+                <ScalarProperty Name="estimate_time" ColumnName="estimate_time" />
+                <ScalarProperty Name="schedule_date" ColumnName="schedule_date" />
+                <ScalarProperty Name="demand" ColumnName="demand" />
+                <ScalarProperty Name="restrict_finish_date" ColumnName="restrict_finish_date" />
+                <ScalarProperty Name="record_user_id" ColumnName="record_user_id" />
+                <ScalarProperty Name="apply_date" ColumnName="apply_date" />
+                <ScalarProperty Name="apply_user_id" ColumnName="apply_user_id" />
+                <ScalarProperty Name="apply_department" ColumnName="apply_department" />
+                <ScalarProperty Name="q_processing_description" ColumnName="q_processing_description" />
+                <ScalarProperty Name="q_status" ColumnName="q_status" />
+                <ScalarProperty Name="q_content" ColumnName="q_content" />
+                <ScalarProperty Name="q_title" ColumnName="q_title" />
+                <ScalarProperty Name="q_kind" ColumnName="q_kind" />
+                <ScalarProperty Name="q_priority" ColumnName="q_priority" />
+                <ScalarProperty Name="q_code" ColumnName="q_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_question_file">
+            <EntityTypeMapping TypeName="CSDBModel.cs_question_file">
+              <MappingFragment StoreEntitySet="cs_question_file">
+                <ScalarProperty Name="file_content" ColumnName="file_content" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="q_code" ColumnName="q_code" />
+                <ScalarProperty Name="file_id" ColumnName="file_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

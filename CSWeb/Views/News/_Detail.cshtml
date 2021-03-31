@@ -1,0 +1,118 @@
+﻿@model CSModel.Models.cs_news
+@*@{
+	model 
+}*@
+
+<p class="text-right">
+	@Html.ActionLink("儲存", "Save", "News", null, new { @class = "btn btn-warning" /* id = Model.PrimaryKey */ })
+	@Html.ActionLink("返回", "Index", "News", null, new { @class = "btn btn-primary" })
+</p>
+
+<div>
+	<hr />
+	<dl class="dl-horizontal InputForm">
+		<dt>
+			新聞類別：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.news_kind)
+		</dd>
+
+		<dt>
+			部門代碼：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.depart_code)
+		</dd>
+
+		<dt>
+			標題：
+		</dt>
+
+		<dd>
+			@Html.TextAreaFor(model => model.title, new { style = "height: 50px;" })
+		</dd>
+
+		<dt>
+			內容：
+		</dt>
+
+		<dd>
+			@Html.TextAreaFor(model => model.content, new { style = "height: 350px;" })
+		</dd>
+
+		<dt>
+			啟用：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.enabled)
+		</dd>
+
+		<dt>
+			起始日期：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.begin_date)
+		</dd>
+
+		<dt>
+			結束日期：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.end_date)
+		</dd>
+
+		<dt>
+			置頂：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.top_news)
+		</dd>
+
+		<dt>
+			點閱數：
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.news_count)
+		</dd>
+
+		<dt>
+			更新人員：
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.update_user_id)
+		</dd>
+
+		<dt>
+			更新日期：
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.update_date)
+		</dd>
+
+		<dt>
+			維護人員：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.maintainer)
+		</dd>
+
+		<dt>
+			維護人員電話：
+		</dt>
+
+		<dd>
+			@Html.EditorFor(model => model.maintainer_tel)
+		</dd>
+	</dl>
+</div>

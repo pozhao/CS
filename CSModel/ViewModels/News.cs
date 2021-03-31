@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using CSModel.ViewModels.Shared;
 
 namespace CSModel.ViewModels
 {
@@ -14,22 +12,14 @@ namespace CSModel.ViewModels
 
     public class NewsList
     {
-        public List<Breadcrumbs> breadcrumbs_list { get; set; }
-        public string kind_name { get; set; }
-        public List<DropdownValue> kind_list { get; set; }
-        public List<News> news_list { get; set; }
-
-        public class News
-        {
-            public int news_id { get; set; }
-            public string title { get; set; }
-            public string content { get; set; }
-            public DateTime begin_date { get; set; }
-            public Nullable<DateTime> end_date { get; set; }
-            public string begin_end_date { get; set; }
-            public string top_news { get; set; }
-            public string kind { get; set; }
-        }
+        public int news_id { get; set; }
+        public string title { get; set; }
+        public string content { get; set; }
+        public DateTime begin_date { get; set; }
+        public Nullable<DateTime> end_date { get; set; }
+        public string begin_end_date { get; set; }
+        public string top_news { get; set; }
+        public string kind { get; set; }
     }
 
     public class NewsDetail

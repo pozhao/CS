@@ -12,6 +12,8 @@
         <EntityTypeShape EntityType="CSDBModel.cs_survey_record" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSDBModel.cs_survey_topic" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSDBModel.cs_survey_user" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSDBModel.cs_question" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CSDBModel.cs_question_file" Width="1.5" PointX="3.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

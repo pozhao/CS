@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using CSModel.Models;
-using CSWeb.ViewModels;
+using CSModel.ViewModels.Shared;
+using CSModel.ViewModels;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace CSWeb.Controllers
     {
         Uri baseAddress = new Uri("http://localhost:14794/api/");
         HttpClient client;
+        HttpResponseMessage response;
 
         public NewsController()
         {
@@ -19,35 +21,66 @@ namespace CSWeb.Controllers
             client.BaseAddress = baseAddress;
         }
 
-        // GET: News
-        public ActionResult Index(string SearchTitle, string SearchContent,
-                                  string SearchDate, string SearchKind)
-        {
-            HttpResponseMessage response;
-            response = client.GetAsync(string.Format("News?SearchTitle={0}&SearchContent={1}&SearchDate={2}&SearchKind={3}",SearchTitle, SearchContent, SearchDate, SearchKind)).Result;
+        #region "private function"
+        private List<Breadcrumbs> GetBreadcrumbs()
+        {            
+            response = client.GetAsync(string.Format("BreadCrumbs?MenuCode={0}", "news")).Result;
 
-            NewsListViewModel objNews = new NewsListViewModel();
+            List<Breadcrumbs> lstBreadcrumbs = new List<Breadcrumbs>();
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-                objNews = JsonConvert.DeserializeObject<NewsListViewModel>(data);
-
-                var selectListKind = objNews.kind_list.Select(k => new SelectListItem()
-                {
-                    Value = k.value,
-                    Text = k.text
-                }).ToList();
-
-                objNews.select_list_kind = selectListKind;
+                lstBreadcrumbs = JsonConvert.DeserializeObject<List<Breadcrumbs>>(data);
             }
 
-            ViewBag.breadcrumbs_list = objNews.breadcrumbs_list;
-            return View(objNews);
+            return lstBreadcrumbs;
         }
 
-        public ActionResult Edit(int NewsID)
+        private List<DropdownValue> GetNewsKinds()
+        {
+            response = client.GetAsync(string.Format("DropdownValue?KindCode={0}", "news_kind")).Result;
+
+            List<DropdownValue> lstNewsKind = new List<DropdownValue>();
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                lstNewsKind = JsonConvert.DeserializeObject<List<DropdownValue>>(data);
+            }
+
+            return lstNewsKind;
+        }
+        #endregion
+
+        // GET: News
+        public ActionResult Index(string SearchTitle, string SearchContent,
+                                  string SearchDate, string SearchKind)
+        {            
+            ViewBag.breadcrumbs_list = GetBreadcrumbs();
+            ViewBag.news_kind_list = GetNewsKinds();
+
+            response = client.GetAsync(string.Format("News?SearchTitle={0}&SearchContent={1}&SearchDate={2}&SearchKind={3}", SearchTitle, SearchContent, SearchDate, SearchKind)).Result;
+
+            var lstNews = new List<NewsList>();
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                lstNews = JsonConvert.DeserializeObject<List<NewsList>>(data);
+            }
+
+            return View(lstNews);
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.breadcrumbs_list = GetBreadcrumbs();
+            return View();
+        }
+
+        public ActionResult Detail(int NewsID)
         {
             HttpResponseMessage response;
+            ViewBag.breadcrumbs_list = GetBreadcrumbs();
+
             response = client.GetAsync(string.Format("News?NewsID={0}", NewsID)).Result;
 
             cs_news objNews = new cs_news();

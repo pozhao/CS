@@ -4,13 +4,24 @@
   white-space: normal; }
 
 body {
-  font-size: 1em; }
+  font-size: 1em;
+  padding-top: 50px;
+  padding-bottom: 20px; }
+  body .body-content {
+    padding-left: 15px;
+    padding-right: 15px; }
+  body .dl-horizontal dt {
+    white-space: normal; }
   body div {
     font-weight: bold;
     /*margin-left: pow(2, 3) * 1px;
 		@include square(100px, $radius: 10px);*/ }
   body span {
     color: red; }
+  body .InputForm input[type=text] {
+    width: 100%; }
+  body .InputForm textarea {
+    width: 100%; }
   body .table {
     table-layout: fixed; }
     body .table th {

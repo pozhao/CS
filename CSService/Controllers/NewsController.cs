@@ -4,18 +4,17 @@ using System.Linq;
 using System.Web.Http;
 using CSModel.Models;
 using CSModel.ViewModels;
-using CSModel.ViewModels.Shared;
 
 namespace CSService.Controllers
 {
     public class NewsController : ApiController
     {
-        private List<NewsList.News> NewsList(NewsListCondition objCondition)
+        private List<NewsList>GetNewsList(NewsListCondition objCondition)
         {
             using (CSDBEntities objDB = new CSDBEntities())
             {
                 var sqlNews1 = objDB.cs_news.Where(n => n.enabled == "Y" && n.begin_date <= DateTime.Now && n.top_news == "Y")
-                                            .Select(n => new NewsList.News
+                                            .Select(n => new NewsList
                                             {
                                                 news_id = n.news_id,
                                                 title = n.title,
@@ -27,7 +26,7 @@ namespace CSService.Controllers
                                             }).AsEnumerable();
 
                 var sqlNews2 = objDB.cs_news.Where(n => n.enabled == "Y" && n.begin_date <= DateTime.Now && n.top_news != "Y")
-                                            .Select(n => new NewsList.News
+                                            .Select(n => new NewsList
                                             {
                                                 news_id = n.news_id,
                                                 title = n.title,
@@ -98,7 +97,7 @@ namespace CSService.Controllers
             }
         }
 
-        public NewsList Get(string SearchTitle, string SearchContent,
+        public List<NewsList> Get(string SearchTitle, string SearchContent,
                             string SearchDate, string SearchKind)
         {
             var objCondition = new NewsListCondition
@@ -109,53 +108,7 @@ namespace CSService.Controllers
                 search_kind = SearchKind
             };
 
-            var objNews = new NewsList();
-            objNews.news_list = NewsList(objCondition);
-            var lstKind = new List<DropdownValue>()
-            {
-                new DropdownValue(){
-                    value = "1",
-                    text = "即時新聞"
-                },
-                new DropdownValue(){
-                    value = "2",
-                    text = "重大政策"
-                },
-                new DropdownValue(){
-                    value = "3",
-                    text = "業務新訊"
-                },
-                new DropdownValue(){
-                    value = "4",
-                    text = "活動快訊"
-                },
-                new DropdownValue(){
-                    value = "5",
-                    text = "就業資訊"
-                },
-            };
-
-            objNews.kind_name = "kind_name";
-            objNews.kind_list = lstKind;
-
-            var lstBreadcrumbs = new List<Breadcrumbs>
-            {
-                new Breadcrumbs()
-                {
-                    name = "首頁",
-                    action = "Index",
-                    controller = "Home"
-                },
-                new Breadcrumbs()
-                {
-                    name = "新聞",
-                    action = "Index",
-                    controller = "News"
-                }
-            };
-            objNews.breadcrumbs_list = lstBreadcrumbs;
-
-            return objNews;
+            return GetNewsList(objCondition);
         }
 
         public cs_news Get(int NewsID)
@@ -166,6 +119,7 @@ namespace CSService.Controllers
                 return objNews;
             }
         }
+
         //public List<NewsList.News> Post([FromBody] NewsListCondition objCondition)
         //{
         //    var lstNews = NewsList(objCondition);

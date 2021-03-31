@@ -13,22 +13,23 @@ namespace CSWeb
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/jquery/jquery-{version}.js",
                       "~/Scripts/jquery/jquery.validate*",
-                      "~/Scripts/bootstrap/bootstrap.min.js",
-                      "~/Scripts/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
-                      "~/Scripts/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-TW.js",
+                      //"~/Scripts/bootstrap/bootstrap.min.js",
+                      //"~/Scripts/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
+                      //"~/Scripts/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-TW.js",
                       "~/Scripts/modernizr/modernizr-*",
                       "~/Scripts/pace/pace.min.js",
                       "~/Scripts/DataTables/jquery.dataTables.min.js",
+                      "~/Scripts/jquery-ui-1.12.1.min.js",
                       "~/Scripts/Main.js"
                       ));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap/bootstrap.min.css",
                       "~/Content/bootstrap/bootstrap-theme.min.css",
-                      "~/Content/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css",
+                      //"~/Content/bootstrap/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css",
                       "~/Content/pace-themes/orange/pace-theme-minimal.css",
                       "~/Content/DataTables/css/jquery.dataTables.min.css",
-                      "~/Content/site.css",
+                      //"~/Content/site.css",
                       "~/Content/Main.min.css"
                       ));
         }
