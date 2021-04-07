@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using CSModel.ViewModels;
+using CSCommon.library;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -9,7 +10,7 @@ namespace CSWeb.Controllers
 {
     public class QuestionController : Controller
     {
-        Uri baseAddress = new Uri("http://localhost:14794/api/");
+        Uri baseAddress = new Uri(CSLibrary.apiString);
         HttpClient client;
         HttpResponseMessage response;
 
@@ -18,8 +19,6 @@ namespace CSWeb.Controllers
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
-
-
 
         // GET: Question
         public ActionResult Index(string SearchStatus, string SearchDateBegin, string SearchDateEnd, string SearchTitle)
@@ -31,21 +30,6 @@ namespace CSWeb.Controllers
             {
                 string data = response.Content.ReadAsStringAsync().Result;
                 lstQuestion = JsonConvert.DeserializeObject<List<QuestionList>>(data);
-
-                //lstQuestion.ForEach(
-                //    q =>
-                //    {
-                //        q.apply_date_desc = q.apply_date.ToString("yyyy/MM/dd");
-                //    }
-                //);
-
-                //var selectListKind = objNews.kind_list.Select(k => new SelectListItem()
-                //{
-                //    Value = k.value,
-                //    Text = k.text
-                //}).ToList();
-
-                //objNews.select_list_kind = selectListKind;
             }
 
             //ViewBag.breadcrumbs_list = objNews.breadcrumbs_list;

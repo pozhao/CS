@@ -5,6 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cs_code">
+          <Key>
+            <PropertyRef Name="kind" />
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="kind" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="serial_no" Type="smallint" Nullable="false" />
+          <Property Name="enabled" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cs_code_kind">
+          <Key>
+            <PropertyRef Name="kind" />
+          </Key>
+          <Property Name="kind" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="kind_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="editable" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'CSDB.dbo.cs_news' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="cs_news">
@@ -216,6 +235,8 @@
           <Property Name="update_date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CSDBModelStoreContainer">
+          <EntitySet Name="cs_code" EntityType="Self.cs_code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cs_code_kind" EntityType="Self.cs_code_kind" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cs_question" EntityType="Self.cs_question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cs_question_file" EntityType="Self.cs_question_file" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cs_news" EntityType="Self.cs_news" store:Type="Tables" store:Schema="dbo">
@@ -494,6 +515,8 @@
           <EntitySet Name="cs_survey_user" EntityType="Self.cs_survey_user" />
           <EntitySet Name="cs_question" EntityType="CSDBModel.cs_question" />
           <EntitySet Name="cs_question_file" EntityType="CSDBModel.cs_question_file" />
+          <EntitySet Name="cs_code" EntityType="CSDBModel.cs_code" />
+          <EntitySet Name="cs_code_kind" EntityType="CSDBModel.cs_code_kind" />
         </EntityContainer>
         <EntityType Name="cs_question">
           <Key>
@@ -528,6 +551,25 @@
           <Property Name="q_code" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
           <Property Name="file_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="file_content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="cs_code">
+          <Key>
+            <PropertyRef Name="kind" />
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="kind" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="serial_no" Type="Int16" Nullable="false" />
+          <Property Name="enabled" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cs_code_kind">
+          <Key>
+            <PropertyRef Name="kind" />
+          </Key>
+          <Property Name="kind" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="kind_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="editable" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -681,6 +723,26 @@
                 <ScalarProperty Name="file_name" ColumnName="file_name" />
                 <ScalarProperty Name="q_code" ColumnName="q_code" />
                 <ScalarProperty Name="file_id" ColumnName="file_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_code">
+            <EntityTypeMapping TypeName="CSDBModel.cs_code">
+              <MappingFragment StoreEntitySet="cs_code">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="kind" ColumnName="kind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cs_code_kind">
+            <EntityTypeMapping TypeName="CSDBModel.cs_code_kind">
+              <MappingFragment StoreEntitySet="cs_code_kind">
+                <ScalarProperty Name="editable" ColumnName="editable" />
+                <ScalarProperty Name="kind_name" ColumnName="kind_name" />
+                <ScalarProperty Name="kind" ColumnName="kind" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

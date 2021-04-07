@@ -34,5 +34,7 @@ namespace CSModel.Models
         public virtual DbSet<cs_survey_user> cs_survey_user { get; set; }
         public virtual DbSet<cs_question> cs_question { get; set; }
         public virtual DbSet<cs_question_file> cs_question_file { get; set; }
+        public virtual DbSet<cs_code> cs_code { get; set; }
+        public virtual DbSet<cs_code_kind> cs_code_kind { get; set; }
     }
 }

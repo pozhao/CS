@@ -103,6 +103,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\cs_code.cs">
+      <DependentUpon>CSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cs_code_kind.cs">
+      <DependentUpon>CSDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\cs_news.cs">
       <DependentUpon>CSDB.tt</DependentUpon>
     </Compile>

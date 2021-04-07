@@ -6,6 +6,11 @@ using System.Reflection;
 
 namespace CSCommon.library
 {
+    public static class CSLibrary 
+    {
+        public static string apiString = "http://localhost:14794/api/";
+    }
+
     /// <summary>
     /// 複製單一 or 多筆(List) Object 之 屬性
     /// </summary>

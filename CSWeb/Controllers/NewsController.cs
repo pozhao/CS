@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using CSModel.Models;
 using CSModel.ViewModels.Shared;
 using CSModel.ViewModels;
+using CSCommon.library;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -11,7 +12,7 @@ namespace CSWeb.Controllers
 {
     public class NewsController : Controller
     {
-        Uri baseAddress = new Uri("http://localhost:14794/api/");
+        Uri baseAddress = new Uri(CSLibrary.apiString);
         HttpClient client;
         HttpResponseMessage response;
 

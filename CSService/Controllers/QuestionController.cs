@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web.Http;
 using CSModel.Models;
 using CSModel.ViewModels;
-using CSCommon.library;
 
 namespace CSService.Controllers
 {
@@ -44,30 +43,32 @@ namespace CSService.Controllers
                 }
 
                 List<QuestionList> lstQuestion;
-                //CopyClass.CopyListToList(sqlQuestion, ref lstQuestion, CopyClass.Scope.DestinationAsMain);
 
-                lstQuestion = Array.ConvertAll<cs_question, QuestionList>(sqlQuestion.ToArray(), q => (QuestionList)q).ToList();
-
-                //lstQuestion = sqlQuestion.ToList().ConvertAll(q => q. new Converter<cs_question, QuestionList>(ConvertQuestion));
+                lstQuestion = (from q in sqlQuestion
+                               from pk in objDB.cs_code_kind.Where(k => k.kind == "Q_PRIORITY").DefaultIfEmpty()
+                               from pc in objDB.cs_code.Where(c => c.kind == pk.kind && c.enabled == "Y" && c.code == q.q_priority).DefaultIfEmpty()
+                               from kk in objDB.cs_code_kind.Where(k => k.kind == "Q_KIND").DefaultIfEmpty()
+                               from kc in objDB.cs_code.Where(c => c.kind == kk.kind && c.enabled == "Y" && c.code == q.q_kind).DefaultIfEmpty()
+                               from sk in objDB.cs_code_kind.Where(k => k.kind == "Q_STATUS").DefaultIfEmpty()
+                               from sc in objDB.cs_code.Where(c => c.kind == sk.kind && c.enabled == "Y" && c.code == q.q_status).DefaultIfEmpty()
+                               select new QuestionList()
+                               {
+                                   q_code = q.q_code,
+                                   q_priority_desc = pc.description,
+                                   q_kind_desc = kc.description,
+                                   q_title = q.q_title,
+                                   q_content = q.q_content,
+                                   q_status_desc = sc.description,
+                                   apply_date = q.apply_date,
+                               }).ToList();
 
                 lstQuestion.ForEach(
                     q =>
                     {
                         q.apply_date_desc = q.apply_date.ToString("yyyy/MM/dd");
-                    }
-                );
-
-                //var lstsqlQuestion = sqlQuestion.Select(q => new QuestionList()
-                //{
-                //    apply_date_desc = q.apply_date.ToString("yyyy/MM/dd"),
-                //});
+                    });
 
                 return lstQuestion;
-
-                //return sqlQuestion.Select(q => new QuestionList() 
-                //{
-                    
-                //}).ToList();
             }            
         }
         private QuestionList ConvertQuestion(object obj)
